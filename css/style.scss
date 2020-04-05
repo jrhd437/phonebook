@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
+
+@import 'bootstrap/bootstrap';
+
+[v-cloak] {
+    display: none;
+}
+
+.thumbs{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-left: 0;
+    padding-right: 1rem;
+    padding-top: 0;
+}

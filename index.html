@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <title>Phonebook</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+    <!-- BEGINNING OF FINDER -->
+    <div class="container-fluid" id="app" v-cloak>
+        <div class="row my-2" id="finder">
+            <div class="col-12 col-md-4 col-lg-4">
+                <h2>Phonebook</h2>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4">
+                <textarea class="form-control" placeholder="Name, Phone Number, etc." id="keyword" v-model="keyword"
+                    v-on:keyup="contactSearch()" rows="1" autofocus></textarea>
+            </div>
+            <div class="col-12 col-md-4 col-lg-4">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Relationship" id="relationship0" value="ALL"
+                        v-model="relationship" v-on:change="contactSearch()">
+                    <label class="form-check-label" for="inlineRadio1">All</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Relationship" id="relationship1" value="Friend"
+                        v-model="relationship" v-on:change="contactSearch()">
+                    <label class="form-check-label" for="inlineRadio1">Friends</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Relationship" id="relationship2" value="Relative"
+                        v-model="relationship" v-on:change="contactSearch()">
+                    <label class="form-check-label" for="inlineRadio2">Relatives</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="Relationship" id="relationship3" value="Coworker"
+                        v-model="relationship" v-on:change="contactSearch()">
+                    <label class="form-check-label" for="inlineRadio3">Coworkers</label>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SEARCH RESULTS -->
+        <div class="row mt-4" v-if="contacts.length > 0" v-cloak>
+            <h6 class="col-12 col-sm-12">{{contacts.length}} Phonebook Results</h6>
+        </div>
+        <div class="row mt-4 text-danger" v-if="contacts.length == 0" v-cloak>
+            <h6 class="col-12 col-sm-12">{{error}}</h6>
+        </div>
+        <div class="row mt-2" v-if="contacts.length > 0" v-cloak>
+            <div class="col-12 col-sm-12 col-md-12">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Phone</th>
+                            <th>Relationship</th>
+                        </tr>
+                    </thead>
+                    <tr v-for="(contact, index) in contacts">
+                        <td>{{ contact.FirstName }}</td>
+                        <td>{{ contact.LastName }}</td>
+                        <td>{{ contact.Phone }}</td>
+                        <td>{{ contact.Relationship }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/phonebook.js"></script>
+</body>
+
+</html>
